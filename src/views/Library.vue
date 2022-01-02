@@ -2,27 +2,27 @@
   <div class="library">
 
     <form class="searchPanel" @submit.prevent="searchGame">
-      <input class="searchInput" v-model="gameTitle" placeholder="Type Game Title">
+    <!-- <form class="searchPanel"> -->
+      <input class="searchInput" v-model="gameTitle" placeholder="Search By Title">
       <img class="searchIcon" src="../assets/icons8-search.svg" @click="searchGame()">
     </form>
 
     <div class="wrapper">
-      <div class="games"  v-for="game in games" :key="game.id">
-        <img @click="$router.push({name: 'game', params: {id: game.title, lastpage: nowPage}})" class="thumbnail" :src="game.thumbnailImage">
+      <div class="games" v-for="game in games" :key="game.id">
+        <img @click="$router.push({name: 'game', params: {id: game.id, lastpage: nowPage}})" class="thumbnail" :src="`http://localhost:1337${game.thumbImage}`">
       </div>
     </div>
 
     <div id="app" class="container">  
       <ul class="page">
-          <!-- <li class="page__btn"><span class="material-icons"><img style="transform: rotateY(-180deg);" class="arrowIcon" src="../assets/next.png"></span></li> -->
           
-          <div v-for="item in itemsCount" :key="item">
+          
+          <!-- <div v-for="item in itemsCount" :key="item">
               <li v-bind:id="item" class="page__numbers" @click="pageClick(item)">
                 {{item}}
               </li>  
-          </div>
+          </div> -->
           
-          <!-- <li class="page__btn"><span class="material-icons"><img class="arrowIcon" src="../assets/next.png"></span></li> -->
         </ul>
       </div>
 
@@ -37,56 +37,50 @@ export default {
   data () {
     return{
       gameTitle: '',
-      games: [
-        {
-          id: '',
-          image: '',
-          title: '...',
-          releaseDate: '...',
-          platforms: '...',
-          genres: '...',
-          developers: '...',
-          description: '...',
-        }
-      ],
-      itemsCount: 0, // DO not TOUCH !!!!!
-      nowPage: 1, // currnet page view
-      lastPageId: 1,
-      ElementCount: null,
-      divideNumber: 20 //this is number for divide page count elements
+      games: []
     }
   },
   methods: {
-    async dds () {
-      //this.router.push({ name: 'user', params: { userId: '123' } })
-      // /this.router.push({ path: 'register', query: { plan: 'private' } })
-      const response = await authService.getGames()
-      this.games = response.data
-      
-    },
     async getUrlPageCount(){
         let parameters = this.$route.query
-        console.log(parameters)
+        //console.log(parameters)
     },
 
     async GetContenet(pageNow){
-      let Coutnt = this.divideNumber // on page view 20 
+      //let Coutnt = this.divideNumber // on page view 20 
       // let pageNow = this.nowPage // = 1 
-      let Offset  = (pageNow - 1) * Coutnt
-      let res = await authService.getGames(Coutnt,Offset)
-      this.games = res.data
-      this.lastPageId = pageNow
+      //let Offset  = (pageNow - 1) * Coutnt
+      let res = await authService.getGames(pageNow)
+
+      //this.games = res.data.data
+
+      console.log(res.data.data)
+
+      console.log(this.games)
+      //this.games.id = res.data.data[0].id
+      //this.games.thumbImage = res.data.data[0].attributes.thumbImage.data.attributes.url
+
+      res.data.data.forEach(item=>{
+  
+            console.log(item.attributes.title)
+            let game = {title: item.attributes.title, slug: item.attributes.slug, id: item.id, thumbImage: item.attributes.thumbImage.data.attributes.url}
+            this.games.push(game)
+            this.games.reverse()
+            //this.games.thumbImage.push(item.attributes.thumbImage.data.attributes.url)
+          
+      })
+      //this.lastPageId = pageNow
       
     },
 
     async pageCalculator(){
       console.log("asd")
-      let parameters = this.$route.query
+      let parameters = this.$route.query //Get url
       if(Object.keys(parameters).length === 0){
         this.$router.push({path:'/', query:{Page: 1}})
         this.nowPage = 1
       }
-      await this.getPageElementsCount()
+      //await this.getPageElementsCount()
 
       if(parameters.Page > this.itemsCount){
         this.nowPage = 1
@@ -100,7 +94,7 @@ export default {
 
       console.log(this.nowPage)
       console.log(this.lastPageId)
-      await this.changeStyle(this.nowPage, this.lastPageId)
+      //await this.changeStyle(this.nowPage, this.lastPageId)
       await this.GetContenet(this.nowPage)      
     },
     
@@ -134,18 +128,34 @@ export default {
         // /this.router.push('/?Page='+pageId)
       }
     },
+   capitalizeTheFirstLetterOfEachWord(words) {
+      var separateWord = words.toLowerCase().split(' ');
+      for (var i = 0; i < separateWord.length; i++) {
+          separateWord[i] = separateWord[i].charAt(0).toUpperCase() +
+          separateWord[i].substring(1);
+      }
+    return separateWord.join(' ');
+    },
     searchGame(){
       if(this.gameTitle != ''){
-        this.$router.push(this.gameTitle)
+        this.$router.push(this.gameTitle.split(" ").join("-").toLowerCase())
       }
     }
-    
   },
   mounted() {
     //this.$router.push({path:'/', query:{Page: 1}})
     // this.getUrlPageCount()
     //this.fetchGames()
     this.pageCalculator()
+  },
+  computed: {
+    // Add to the games array
+    filteredGames: function(){
+      return this.games.filter((game)=>{
+        //console.log(this.capitalizeTheFirstLetterOfEachWord(this.gameTitle))
+        return game.title.match(this.capitalizeTheFirstLetterOfEachWord(this.gameTitle))
+      })
+    }
   }
 };
 </script>

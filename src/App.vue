@@ -47,11 +47,11 @@ const DEFAULT_TRANSITION = 'fade';
 
 *{
   margin: 0;
-  overflow-x: hidden;
 }
 
 html, body{
   background: #11171C;
+  overflow-x: hidden;
 }
 
 #app {
