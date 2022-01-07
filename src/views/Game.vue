@@ -164,9 +164,10 @@ export default {
 .gradient-bg{
   //background: rgba(255, 255, 255, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgba(255, 255, 255, .1) 40%, rgba(0, 0, 0, 0.5) 75%, rgb(0, 0, 0) 100%) repeat scroll 0 0;
   background: rgba(0, 0, 0, 0.3);
-  position: relative;
-  margin-top: -404px;
-  height: 400px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
 }
 
 .overlay{
