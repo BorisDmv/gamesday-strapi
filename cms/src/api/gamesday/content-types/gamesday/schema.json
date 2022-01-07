@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gamesdays",
+  "info": {
+    "singularName": "gamesday",
+    "pluralName": "gamesdays",
+    "displayName": "gamesday",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "bannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "thumbImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "releaseDate": {
+      "type": "string"
+    },
+    "platforms": {
+      "type": "string"
+    },
+    "genres": {
+      "type": "string"
+    },
+    "developers": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "trailer": {
+      "type": "string"
+    },
+    "win": {
+      "type": "boolean"
+    },
+    "xbox": {
+      "type": "boolean"
+    },
+    "ps": {
+      "type": "boolean"
+    },
+    "switch": {
+      "type": "boolean"
+    },
+    "gameImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    }
+  }
+}

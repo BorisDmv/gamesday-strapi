@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-
+      
       <div class="container">
         <div class="content">
           <div class="library">   
@@ -124,17 +124,14 @@ export default {
     },
     async fetchGame(id) {
       const response = await authService.getGame(id)
+      //console.log(response.data.data[0].attributes.title)
       let respp = response
-      respp = respp.data.data.attributes
-      console.log('response ', respp)
+      respp = respp.data.data[0].attributes
+      //console.log(response.data.data.attributes.title)
       this.game = respp
       this.game.bannerImage = respp.bannerImage.data.attributes.url
       this.game.gameImages = respp.gameImages.data
-      //console.log(respp.bannerImage.data.attributes.url)
-      console.log(this.game)
-
-      //if(typeof this.game.title !== "undefiend")
-        //console.log(this.game.title)
+      console.log(this.game.title)
     },
     async tryGetLastPage(PageId){
       if(PageId != null){
