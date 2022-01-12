@@ -3,7 +3,7 @@ const qs = require("qs");
 
 export default () => {
     return axios.create({
-        baseURL: `http://localhost:8082/`,
+        baseURL: `${process.env.VUE_APP_BASE_URL}`,
         paramsSerializer: params => {
             return qs.stringify(params);
         },

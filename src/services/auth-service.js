@@ -6,15 +6,15 @@ export default {
     },
     
     getGames(pageNum) {
-        return api().get(`api/gamesdays?pagination[page]=${pageNum}&populate=thumbImage`)
+        return api().get(`/api/gamesdays?pagination[page]=${pageNum}&populate=thumbImage`)
     },
 
     getGame2(slug) {
-        return api().get(`api/gamesdays/${slug}`)
+        return api().get(`/api/gamesdays/${slug}`)
     },
 
     getGame(slug) {
-        return api().get("api/gamesdays", {
+        return api().get("/api/gamesdays", {
             params: {
               filters: {
                 slug: {

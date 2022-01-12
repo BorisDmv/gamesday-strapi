@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="overlay"></div>
-        <img class="banner" :src="`http://localhost:1337${this.game.bannerImage}`">
+        <img class="banner" :src="`${baseUrl + this.game.bannerImage}`">
         <div class="gradient-bg"></div>
       </div>
 
@@ -70,14 +70,14 @@
           class="pic"
           @click="() => showImg(id)"
         >
-          <img :src="`http://localhost:1337${src.attributes.url}`">
+          <img :src="`${baseUrl + src.attributes.url}`">
         </div>
       </div>
 
       
       <vue-easy-lightbox
       :visible="visible"
-      :imgs="`http://localhost:1337${this.game.gameImages[index].attributes.url}`"
+      :imgs="`${baseUrl + this.game.gameImages[index].attributes.url}`"
       :index="index"
       :moveDisabled=true
       @hide="handleHide"
@@ -98,6 +98,7 @@ export default {
   },
   data () {
     return{
+      baseUrl: process.env.VUE_APP_BASE_URL,
       game:
         {
           id: '',

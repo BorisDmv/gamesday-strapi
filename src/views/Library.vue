@@ -9,7 +9,7 @@
 
     <div class="wrapper">
       <div class="games" v-for="game in games" :key="game.id">
-        <img @click="$router.push({name: 'game', params: {id: game.slug, lastpage: nowPage}})" class="thumbnail" :src="`http://localhost:1337${game.thumbImage}`">
+        <img @click="$router.push({name: 'game', params: {id: game.slug, lastpage: nowPage}})" class="thumbnail" :src="`${baseUrl + game.thumbImage}`">
       </div>
     </div>
 
@@ -36,6 +36,7 @@ export default {
   name: "Library",
   data () {
     return{
+      baseUrl: process.env.VUE_APP_BASE_URL,
       gameTitle: '',
       games: []
     }
