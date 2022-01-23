@@ -1,14 +1,16 @@
 <template>
   <div class="library">
 
-    <form class="searchPanel" @submit.prevent="searchGame">
-    <!-- <form class="searchPanel"> -->
+    <!-- <form class="searchPanel" @submit.prevent="searchGame"> -->
+    <form class="searchPanel">
       <input class="searchInput" v-model="gameTitle" placeholder="Search By Title">
-      <img class="searchIcon" src="../assets/icons8-search.svg" @click="searchGame()">
+      <!-- <img class="searchIcon" src="../assets/icons8-search.svg" @click="searchGame()"> -->
+      <img class="searchIcon" src="../assets/icons8-search.svg">
     </form>
 
     <div class="wrapper">
-      <div class="games" v-for="game in games" :key="game.id">
+      <!-- <div class="games" v-for="game in games" :key="game.id"> -->
+      <div class="games" v-for="game in filteredGames" :key="game.id">
         <img @click="$router.push({name: 'game', params: {id: game.slug, lastpage: nowPage}})" class="thumbnail" :src="`${game.thumbImage}`">
       </div>
     </div>
@@ -46,8 +48,7 @@ export default {
         let parameters = this.$route.query
         //console.log(parameters)
     },
-
-    async GetContenet(pageNow){
+    async GetContent(pageNow){
       //let Coutnt = this.divideNumber // on page view 20 
       // let pageNow = this.nowPage // = 1 
       //let Offset  = (pageNow - 1) * Coutnt
@@ -75,13 +76,12 @@ export default {
     },
 
     async pageCalculator(){
-      console.log("asd")
       let parameters = this.$route.query //Get url
       if(Object.keys(parameters).length === 0){
         this.$router.push({path:'/', query:{Page: 1}})
         this.nowPage = 1
       }
-      //await this.getPageElementsCount()
+
 
       if(parameters.Page > this.itemsCount){
         this.nowPage = 1
@@ -96,7 +96,7 @@ export default {
       console.log(this.nowPage)
       console.log(this.lastPageId)
       //await this.changeStyle(this.nowPage, this.lastPageId)
-      await this.GetContenet(this.nowPage)      
+      await this.GetContent(this.nowPage)      
     },
     
     async changeStyle(nowPage,lastPage){
