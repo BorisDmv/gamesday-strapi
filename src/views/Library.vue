@@ -2,7 +2,7 @@
   <div class="library">
 
     <div class="navCont">
-        <img style="width: 2%" src="../assets/Gamesday_logo.svg" />
+        <img style="width: 35px" src="../assets/Gamesday_logo.svg" />
 
         <!-- <form class="searchPanel" @submit.prevent="searchGame"> -->
         <form class="searchPanel">

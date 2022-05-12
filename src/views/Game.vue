@@ -317,7 +317,7 @@ export default {
   .titleCont{
     flex-direction: column;
     margin-bottom: 50px;
-    top: 170px;
+    top: 115px;
   }
 
   .title-date{
@@ -326,6 +326,7 @@ export default {
   
   .platformsCont{
     justify-content: center;
+    top: 170px;
   }
 
   .platformText{
