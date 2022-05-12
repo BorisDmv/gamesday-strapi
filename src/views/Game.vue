@@ -162,14 +162,13 @@ export default {
   overflow-x: hidden;
 }
 
-.gradient-bg{
-  //background: rgba(255, 255, 255, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgba(255, 255, 255, .1) 40%, rgba(0, 0, 0, 0.5) 75%, rgb(0, 0, 0) 100%) repeat scroll 0 0;
-  background: rgba(0, 0, 0, 0.3);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-}
+// .gradient-bg{
+//   background: rgba(0, 0, 0, 0.3);
+//   position: absolute;
+//   height: 100%;
+//   width: 100%;
+//   top: 0;
+// }
 
 .overlay{
   background: red;
@@ -304,8 +303,11 @@ export default {
 
   .banner {
     width: auto;
-    height: 400px;
-    object-position: -300px 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    height: 231px;
+    position: absolute;
   }
 
   .library{
@@ -315,6 +317,7 @@ export default {
   .titleCont{
     flex-direction: column;
     margin-bottom: 50px;
+    top: 170px;
   }
 
   .title-date{
@@ -334,6 +337,7 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    margin-top: 250px;
   }
 
   .rightCont{
@@ -356,41 +360,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .banner {
-    object-position: -340px 0;
-  }
-}
 
-@media only screen and (max-width: 800px) {
-  .banner {
-    object-position: -380px 0;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .banner {
-    object-position: -420px 0;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .banner {
-    object-position: -480px 0;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .banner {
-    object-position: -540px 0;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .banner {
-    object-position: -580px 0;
-  }
-}
 
 
 </style>

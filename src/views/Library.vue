@@ -1,12 +1,16 @@
 <template>
   <div class="library">
 
-    <!-- <form class="searchPanel" @submit.prevent="searchGame"> -->
-    <form class="searchPanel">
-      <input class="searchInput" v-model="gameTitle" placeholder="Search By Title">
-      <!-- <img class="searchIcon" src="../assets/icons8-search.svg" @click="searchGame()"> -->
-      <img class="searchIcon" src="../assets/icons8-search.svg">
-    </form>
+    <div class="navCont">
+        <img style="width: 2%" src="../assets/Gamesday_logo.svg" />
+
+        <!-- <form class="searchPanel" @submit.prevent="searchGame"> -->
+        <form class="searchPanel">
+          <input class="searchInput" v-model="gameTitle" placeholder="Search By Title">
+          <!-- <img class="searchIcon" src="../assets/icons8-search.svg" @click="searchGame()"> -->
+          <img class="searchIcon" src="../assets/icons8-search.svg">
+        </form>
+      </div>
 
     <div class="wrapper">
       <!-- <div class="games" v-for="game in games" :key="game.id"> -->
@@ -163,11 +167,17 @@ export default {
 
 <style scoped lang="scss">
 
+.navCont{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
 .searchPanel{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0 10px 0;
 }
 
 .searchInput{
